@@ -1,0 +1,8 @@
+<div class="container">
+  <agm-map [latitude]="currentPosition.customerLatitude" [longitude]="currentPosition.customerLongitude" [zoom]='zoom'>
+    <agm-marker [latitude]="currentPosition.customerLatitude" [longitude]="currentPosition.customerLongitude"></agm-marker>
+    <agm-marker *ngFor='let driver of drivers' [latitude]="driver.latitude" [longitude]="driver.longitude" [iconUrl]='icon'>
+      <agm-info-window #infoWindow> {{driver.fullname}}</agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>

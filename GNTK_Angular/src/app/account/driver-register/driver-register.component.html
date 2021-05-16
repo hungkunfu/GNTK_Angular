@@ -1,0 +1,90 @@
+<div class=" open" style="max-width:400px; margin:0 auto;">
+  <img src="/assets/img/logo.png" style="max-width: 280px;" class="mx-auto d-block logo">
+  <div>
+    <table style="max-width:800px; margin:0 auto;">
+      <tr>
+        <th><a class="btn btn-lg btn-block" routerLink="/dang-ki-khach-hang">Đăng Kí Người Dùng</a></th>
+        <th style="padding: 20px;"><a class="btn btn-lg btn-block" routerLink="/dang-ki-tai-xe">Đăng Kí Tài Xế Lái Xe
+          </a>
+        </th>
+      </tr>
+    </table>
+  </div>
+  <form [formGroup]="UserForm" (ngSubmit)="onFormSubmit()">
+    <table>
+      <tr>
+        <th>
+          <div class="input-group mb-2">
+            <input type="email" class="form-control" placeholder="Email" formControlName="email" required>
+          </div>
+          <div class="input-group mb-2">
+            <input type="password" class="form-control" placeholder="Mật Khẩu" formControlName="password">
+          </div>
+          <div class="input-group mb-2">
+            <input type="password" class="form-control" placeholder="Nhập Lại Mật Khẩu"
+              formControlName="confirmPassword">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Số Điện Thoại" formControlName="phoneNumber">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Họ Và Tên" formControlName="fullname">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Hình Ảnh" formControlName="avatar">
+          </div>
+        </th>
+        <th>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Màu xe" formControlName="color">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="số đăng kí xe"
+              formControlName="vehicleRegistrationCertificateNumber">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Nhãn Hiệu" formControlName="brand">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Biển Số Xe" formControlName="numberPlate">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="CMND" formControlName="identityCardNumber">
+          </div>
+          <div class="input-group mb-2">
+            <input type="text" class="form-control" placeholder="Số Giấy Phép Lái Xe"
+              formControlName="drivingLicenseNumber">
+          </div>
+        </th>
+      </tr>
+    </table>
+    <label for="">Địa Chỉ</label>
+    <div class="input-group mb-2">
+      <div style=" padding: 2px;">
+        <select name="" id="province" formControlName="province" (change)='getDistrict()'>
+          <option value="0">Tỉnh/Thành phố</option>
+          <option value="{{ province.provinceId }}" *ngFor="let province of provinceRes">
+            {{ province.provinceName }}
+          </option>
+        </select>
+      </div>
+      <div style="padding: 2px;">
+        <select name="" id="district" formControlName="district" (change)='getWard()'>
+          <option value="0">Quận / Huyện</option>
+          <option value="{{ district.districtId }}" *ngFor="let district of districtRes">{{ district.districtName }}
+          </option>
+        </select>
+      </div>
+      <div style="padding: 2px;">
+        <select name="" id="ward" formControlName="ward">
+          <option value="0">Phường / Xã</option>
+          <option value="{{ ward.wardId }}" *ngFor="let ward of wardRes">{{ ward.wardName }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="input-group mb-2">
+      <input type="text" class="form-control" placeholder="address" formControlName="address">
+    </div>
+    <button type="submit" class="btn btn-block btn-success">Tạo Tài Khoản Lái Xe</button>
+  </form>
+</div>

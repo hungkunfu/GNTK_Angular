@@ -1,0 +1,22 @@
+<div class="container">
+  <h4>Các chuyến có thể nhận</h4>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nằm trong bán kính</th>
+        <th scope="col">Tác vụ</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let booking of bookings; index as idx">
+      <tr>
+        <td>{{ idx+1 }}</td>
+        <td>{{ booking.inRadius }} m</td>
+        <td>
+          <button class="btn btn-primary">Hiển thị vị trí trên bản đồ</button>
+          <button class="btn btn-primary" (click)='acceptBooking(booking.bookingId,"20b1f237-47a6-495c-be36-98149eccab2e")'>Nhận chuyến này</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

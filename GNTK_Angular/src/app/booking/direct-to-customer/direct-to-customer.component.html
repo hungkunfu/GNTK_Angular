@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <agm-map [latitude]="position.latitude" [longitude]="position.longitude" [zoom]='zoom'>
+        <agm-marker [latitude]="position.latitude" [longitude]="position.longitude"></agm-marker>
+        <agm-direction
+              [origin]='origin'
+              [destination]='destination'
+          ></agm-direction>
+      </agm-map>
+    </div>
+    <div class="col-6">
+      <app-booking-info></app-booking-info>
+    </div>
+  </div>
+</div>

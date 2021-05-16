@@ -1,0 +1,25 @@
+<div class="container">
+  <agm-map [latitude]="pickedUpPositon.latitude" [longitude]="pickedUpPositon.longitude" [zoom]='zoom'
+    (mapReady)="mapReadyHandler($event)">
+    <agm-marker [latitude]="pickedUpPositon.latitude" [longitude]="pickedUpPositon.longitude"></agm-marker>
+    <agm-marker [latitude]="dropedOffPosition.latitude" [longitude]="dropedOffPosition.longitude"></agm-marker>
+    <agm-direction *ngIf='origin' [origin]='origin' [destination]='destination'></agm-direction>
+  </agm-map>
+  <div>
+    Quãng đường: {{ distance }} km
+  </div>
+  <div>
+    <div class="form-group">
+      <label>Điểm xuất phát</label>
+      <input type="text" class="form-control" id="originAddress" placeholder="Nhập nơi xuất phát">
+    </div>
+    <div class="form-group">
+      <label>Điểm đến</label>
+      <input type="text" class="form-control" id="destinationAddress" placeholder="Nhập nơi đến">
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" (click)='showDirection()'>Xem chỉ đường</button>
+      <button class="btn btn-primary" (click)='bookingTransport()'>Đặt chuyến</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<h3>Thông tin chuyến vận chuyển</h3>
+<table class="table table-hover">
+  <tbody>
+    <tr>
+      <th scope="row">Tên người đặt chuyến</th>
+      <td>{{ customer.fullname }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Số điện thoại người đặt chuyến</th>
+      <td>{{ customer.phoneNumber }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Chiều dài đoạn đường</th>
+      <td>{{ booking.distance/1000 }} km</td>
+    </tr>
+    <tr>
+      <th scope="row">Thời điểm đặt chuyến</th>
+      <td>{{ booking.bookingTime | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+    </tr>
+    <tr>
+      <th scope="row">Đơn giá</th>
+      <td>{{ booking.unitPrice }} đồng/km</td>
+    </tr>
+    <tr>
+      <th scope="row">Tổng tiền thanh toán</th>
+      <td>{{ booking.unitPrice * booking.distance/1000 }} đồng</td>
+    </tr>
+    <tr *ngIf='(booking.pickedUpTime |date: "yyyy") == "0001";else elseBlock'>
+      <th scope="row">Thời điểm nhận khách</th>
+      <td>
+        <button class="btn btn-primary"
+          (click)='pickedUpCustomer(booking.bookingId,"20b1f237-47a6-495c-be36-98149eccab2e")'>Nhận khách</button>
+      </td>
+    </tr>
+    <ng-template #elseBlock>
+      <tr>
+        <th scope="row">Thời điểm nhận khách</th>
+        <td>
+          {{ booking.pickedUpTime | date: 'dd/MM/yyyy hh:mm:ss'}}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Thời điểm trả khách</th>
+        <td *ngIf='(booking.droppedOffTime |date: "yyyy") == "0001";else elseBlock'>
+          <button class="btn btn-primary"
+            (click)='dropedOffCustomer(booking.bookingId,"20b1f237-47a6-495c-be36-98149eccab2e")'>Xác nhận trả
+            khách</button>
+        </td>
+        <ng-template #elseBlock>
+          <td>{{ booking.droppedOffTime | date:'dd/MM/yyyy hh:mm:ss'}}</td>
+        </ng-template>
+      </tr>
+    </ng-template>
+  </tbody>
+</table>
